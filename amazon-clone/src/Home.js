@@ -7,7 +7,7 @@ function Home() {
         <div className='home__container'>
         <img
         className='home__image'
-        src='https://images-eu.ssl-images-amazon.com/images/G/31/img22/Fashion/Gateway/BAU/Clearance/PC-1500X600._CB648065009_.jpg'
+        src='https://lagatar24.com/wp-content/uploads/2022/04/IMG-20220401-WA0012.jpg'
          alt='Image telling amazon latest offers'/>
          <div className='home__row'>
              <Product id="122423" title='The lean startup, The must needed startup guide' price={29.99} image={'https://images-na.ssl-images-amazon.com/images/I/51CTIr1bJxL._SX325_BO1,204,203,200_.jpg'} rating={4}/>
