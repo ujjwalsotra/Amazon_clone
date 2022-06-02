@@ -4,18 +4,17 @@ import './Subtotal.css';
 {/* Will use react currency formater*/}
 function Subtotal() {
   return (
-    <div className='Subtotal'>
-       <CurrencyFormat renderText={(value)=>(
+    <div className='subtotal'>
+       <CurrencyFormat 
+       renderText={(value)=>(
            <>
            <p>
                Subtotal (0 items):<strong>0</strong>
            </p>
-           <small className='Subtotal__gift'>
-               <input type="checkbox"/>
-
-               
+           <p className='Subtotal__gift'>
+               <input type="checkbox"/> 
                This order contains a gift
-           </small>
+           </p>
            </>
        )}
        decimalScale={2}
@@ -24,8 +23,11 @@ function Subtotal() {
        thousandSeparator={true}
        prefix={"$"}
        />
+       <button>
+         Proceed to Checkout
+       </button>
     </div>
-  )
+  );
 }
 
-export default Subtotal
+export default Subtotal;
