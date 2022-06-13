@@ -10,8 +10,8 @@ function Home() {
         src='https://lagatar24.com/wp-content/uploads/2022/04/IMG-20220401-WA0012.jpg'
          alt='Image telling amazon latest offers'/>
          <div className='home__row'>
-             <Product id="122423" title='The lean startup, The must needed startup guide' price={29.99} image={'https://images-na.ssl-images-amazon.com/images/I/51CTIr1bJxL._SX325_BO1,204,203,200_.jpg'} rating={4}/>
-             <Product id="123332" title='Logitech MK345 Wireless Combo Full-Sized Keyboard with Palm Rest and Comfortable Right-Handed Mouse'
+             <Product id='122423' title='The lean startup, The must needed startup guide' price={29.99} image={'https://images-na.ssl-images-amazon.com/images/I/51CTIr1bJxL._SX325_BO1,204,203,200_.jpg'} rating={4}/>
+             <Product id='123332' title='Logitech MK345 Wireless Combo Full-Sized Keyboard with Palm Rest and Comfortable Right-Handed Mouse'
                   price={59.99} image={'https://m.media-amazon.com/images/I/61ltL022OEL._SX679_.jpg'} rating={5}/>
              {/*product component*/}
          </div>
