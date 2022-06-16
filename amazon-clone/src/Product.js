@@ -1,22 +1,23 @@
 import React from 'react'
 import "./Product.css";
 import { useStateValue } from './StateProvider';
-function Product({title,image,price,rating}) {
+import reducer from './reducer';
+function Product({id,title,image,price,rating}) {
   const [{basket},dispatch]=useStateValue();
-  console.log('this',basket);
-  const addToBasket=()=>{
-    //dispatch the item into the data layer
+  const addToBasket = () =>{
+    // Dispatch the item into the data layer
+    //console.log("this is the basket",basket);
     dispatch({
-      type: 'ADD_TO_BASKET',
+      type: "ADD_TO_BASKET",
       item:{
-        //id:id,
+        id:id,
         title:title,
         image:image,
         price:price,
         rating:rating,
       },
     });
-  }
+  };
   return (
     <div className='product'>
         <div className='product__info'>
@@ -36,7 +37,7 @@ function Product({title,image,price,rating}) {
         alt='Product Image'/>
         <button onClick={addToBasket}>Add to bag</button>
     </div>
-  )
+  );
 }
 
-export default Product
+export default Product;
