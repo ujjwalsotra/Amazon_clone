@@ -1,0 +1,66 @@
+.login{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.login__logo{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    object-fit: contain;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.login__container{
+    width: 300px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid orange;
+    padding: 20px;
+}
+.login__container > h1{
+    font-weight: 500;
+    margin-bottom: 20px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.login__container > form >h5{
+    margin-bottom: 5px;
+}
+.login__container > form >input{
+    height: 20px;
+    margin-bottom: 10px;
+    border: 0.5px solid orange;
+    border-radius: 7px;
+    background-color: rgba(134, 116, 106, 0.119);
+}
+.login__container>p{
+    margin-top: 15px;
+    font-size: 12px;
+}
+.login__button{
+    background-color: #fccf55;
+    border-radius: 10px;
+    flex-direction: row;
+    align-items: center;
+    width: 75%;
+    height: 30px;
+    border: 1px solid;
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
+}
+.login__register{
+    background-color: lightgray;
+    border-radius: 10px;
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
+}
