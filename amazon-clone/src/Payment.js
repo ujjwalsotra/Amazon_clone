@@ -29,7 +29,7 @@ function Payment() {
         }
         getClientSecret();
     },[basket])// this method is doing that when ever the basket changes it will make the special stripe request to change the basket total
-
+    console.log('THE SECRET IS>>', clientSecret)
     const handleSubmit =async (event)=>{
         // do all fancy stripe stuff....
         event.preventDefault();
