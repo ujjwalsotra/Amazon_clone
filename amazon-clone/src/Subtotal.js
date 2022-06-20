@@ -4,6 +4,7 @@ import './Subtotal.css';
 import { useStateValue } from './StateProvider';
 import { getBasketTotal } from './reducer';
 import { useNavigate } from 'react-router-dom';
+import reducer from './reducer';
 {/* Will use react currency formater*/}
 function Subtotal() {
   const navigate=useNavigate();

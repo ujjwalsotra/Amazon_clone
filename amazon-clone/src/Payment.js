@@ -1,10 +1,61 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import { CardElement, cardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import CurrencyFormat from 'react-currency-format';
+import { Link,useNavigate } from 'react-router-dom';
 import CheckoutProduct from './CheckoutProduct';
 import './Payment.css'
+import { getBasketTotal } from './reducer';
 import { useStateValue } from './StateProvider'
 function Payment() {
+    const navigate=useNavigate();
     const [{basket,user},dispatch]=useStateValue();
+    const [succeeded,setSucceeded]=useState(false);
+    const [processing,setProcessing]=useState("");
+    const [clientSecret,setClientSecret]=useState(true);
+    const stripe=useStripe();
+    const elements=useElements();
+    const [error,setError]=useState(null);
+    const [disabled,setDisabled]=useState(true);
+
+    useEffect(()=>{
+        // generate special stripe secret that allows us to charge the customer
+        const getClientSecret=async()=>{
+            const response= await axios({  // axios is a way of making request post request, get request any request
+             method:'post',
+             url: `/payments/create?Total=${getBasketTotal(basket)*100}`// here 100 is subcurrency
+            });
+            setClientSecret(response.data.clientSecret)
+        }
+        getClientSecret();
+    },[basket])// this method is doing that when ever the basket changes it will make the special stripe request to change the basket total
+
+    const handleSubmit =async (event)=>{
+        // do all fancy stripe stuff....
+        event.preventDefault();
+        setProcessing(true); // setting processin to true as once the buy now button is clicked it will be disabled
+
+        
+        const payload=await stripe.confirmCardPayment(clientSecret,{
+            payment_method:{
+                card: elements.getElement(CardElement)
+            }
+        }).then(({paymentIntent})=>{
+            //paymentIntent = Payment confirmation
+            setSucceeded(true);
+            setError(null);
+            setProcessing(false);
+
+            navigate('/orders',{replace:true})
+        })
+
+    }
+    const handleChange =event=>{
+            //Listen for changes in the card element
+            // display any errors as the customer types their card details
+            setDisabled(event.empty); // if event is empty then disable the button
+            setError(event.error ? event.error.message:"");// if there is  a error show the error else do nothing
+    }
   return (
     <div className='payment'>
          <div className='payment__container'>
@@ -48,6 +99,27 @@ function Payment() {
                     </div>
                     <div className='payment__details'>
                         {/* Stripe Magic */}
+
+                        <form onSubmit={handleSubmit}>
+                            <CardElement onChange={handleChange}/>
+
+                            <div className='payment__priceContainer'>
+                            <CurrencyFormat 
+                                    renderText={(value)=>(
+                                       <h3>Order Total : {value}</h3>
+                                    )}
+                                    decimalScale={2}
+                                    value={getBasketTotal(basket)}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"$"}
+                                    />
+                                    <button disabled={processing || disabled || succeeded}>
+                                        <span>{processing ? <p>Processing</p>:"Buy Now"}</span>
+                                    </button>
+                            </div>
+                            {error && <div>{error}</div>}
+                        </form>
                     </div>
             </div>
          </div>
