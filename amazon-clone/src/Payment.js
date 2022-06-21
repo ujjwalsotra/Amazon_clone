@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import CurrencyFormat from 'react-currency-format';
 import { Link,useNavigate } from 'react-router-dom';
 import CheckoutProduct from './CheckoutProduct';
+import { db } from './firebase';
 import './Payment.css'
 import { getBasketTotal } from './reducer';
 import { useStateValue } from './StateProvider'
@@ -34,17 +35,28 @@ function Payment() {
         // do all fancy stripe stuff....
         event.preventDefault();
         setProcessing(true); // setting processin to true as once the buy now button is clicked it will be disabled
-
+       
         
         const payload=await stripe.confirmCardPayment(clientSecret,{
             payment_method:{
                 card: elements.getElement(CardElement)
             }
+           
         }).then(({paymentIntent})=>{
             //paymentIntent = Payment confirmation
+           // console.log("hellloooo")
+            db.collection('users').doc(user?.uid).collection('orders').doc(paymentIntent.id).set({
+                basket: basket,
+                amount:paymentIntent.amount,
+                created: paymentIntent.created
+            })
+
             setSucceeded(true);
             setError(null);
             setProcessing(false);
+            dispatch({
+                type:'EMPTY_BASKET'
+            })
 
             navigate('/orders',{replace:true})
         })
