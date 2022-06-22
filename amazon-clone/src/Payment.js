@@ -51,6 +51,7 @@ function Payment() {
                 created: paymentIntent.created
             })
 
+            navigate('/orders',{replace:true})
             setSucceeded(true);
             setError(null);
             setProcessing(false);
@@ -58,7 +59,6 @@ function Payment() {
                 type:'EMPTY_BASKET'
             })
 
-            navigate('/orders',{replace:true})
         })
 
     }
