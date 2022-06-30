@@ -21,3 +21,8 @@
 <img width="959" alt="logineed" src="https://user-images.githubusercontent.com/69038984/176661617-3159c3f0-124b-4a81-bf19-8902d021a9a5.png">
 
 
+### ADDING TO  BASKET REMOVING AND PROCESSING PAYMENT
+
+https://user-images.githubusercontent.com/69038984/176664465-170de4d2-7828-424e-b2e9-1a6196e0de79.mp4
+
+
